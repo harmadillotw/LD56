@@ -22,3 +22,9 @@ texture = SubResource("CompressedTexture2D_o18r2")
 visible = false
 position = Vector2(2, -1)
 shape = SubResource("RectangleShape2D_1y0sr")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = -3.0

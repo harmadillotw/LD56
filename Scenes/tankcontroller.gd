@@ -16,7 +16,7 @@ var salinityTestKit = 0
 
 var items_dict = {}
 
-var ph = 7.0
+var ph = 4.0
 var salinity = 5.0
 var light = 10.0
 var ph_change = 0.01
@@ -128,7 +128,12 @@ func _on_breed():
 	print("do breed")
 	if creatureCount < Global.max_creature_count:
 		add_creature(0)
-
+func _on_die(creature):
+	var cindex = creatureArray.find(creature)
+	if cindex < creatureCount:
+		var toDelete = creatureArray.pop_at(cindex)
+		toDelete.queue_free()
+		creatureCount -= 1
 func _on_unpause():
 	saveButton.visible = !saveButton.visible
 	loadButton.visible = !loadButton.visible
@@ -175,9 +180,10 @@ func add_creature(cost) -> void:
 	var startLocation = Vector2(startx,starty)
 	#var startLocation = Vector2(400,150)
 	instance.position = startLocation
-	instance.health = 100
+	instance.health = 90 + rng.randf_range(0.0,10.0)
 	instance.velocity = Vector2(0,0)
 	instance.breedSignal.connect(_on_breed)
+	instance.dieSignal.connect(_on_die)
 	creatureArray.append(instance)
 	creatureCount += 1
 	cash -= cost
@@ -292,6 +298,7 @@ func load_game():
 		new_object.maxSal = node_data["maxSal"]
 		# reconnect signals
 		new_object.breedSignal.connect(_on_breed)
+		new_object.dieSignal.connect(_on_die)
 		# Now we set the remaining variables.
 		for i in node_data.keys():
 			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":

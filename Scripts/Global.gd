@@ -1,6 +1,6 @@
 extends Node
 
-var max_creature_count = 1000
+var max_creature_count = 20
 
 enum ITEM_SET {RED_SHRIMP, GREEN_SHRIMP, BLUE_SHRIMP,
 PH_65_BUFFER, PH_72_BUFFER, PH_85_BUFFER, NATURAL_SALT, DECHLORINATOR,
