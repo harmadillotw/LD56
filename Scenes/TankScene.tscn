@@ -1,0 +1,123 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck2xxvtblv8yk"]
+
+[ext_resource type="Script" path="res://Scenes/tankcontroller.gd" id="1_6pk36"]
+[ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_4tpb6"]
+[ext_resource type="PackedScene" uid="uid://c812ld2h8kx5w" path="res://Scenes/creature/Creature.tscn" id="2_j5clf"]
+[ext_resource type="Script" path="res://Scenes/mag_viewport.gd" id="3_mu5ub"]
+[ext_resource type="Script" path="res://Scenes/mag_viewport_container.gd" id="3_mxwu8"]
+
+[node name="Tank" type="Node2D"]
+script = ExtResource("1_6pk36")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(587.5, 322.5)
+scale = Vector2(10.1797, 6.03906)
+texture = ExtResource("2_4tpb6")
+
+[node name="CreaturesNode2D" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_j5clf")]
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_j5clf")]
+position = Vector2(867, 470)
+
+[node name="PHLabel" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 40.0
+offset_right = 104.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 32
+text = "PH"
+
+[node name="PHPlusButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 95.0
+offset_top = 40.0
+offset_right = 130.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 32
+text = "+"
+
+[node name="PHMinusButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 160.0
+offset_top = 42.0
+offset_right = 210.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 32
+text = "-"
+
+[node name="SALLabel" type="Label" parent="."]
+offset_left = 14.0
+offset_top = 118.0
+offset_right = 101.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 32
+text = "SAL"
+
+[node name="SALPlusButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 94.0
+offset_top = 116.0
+offset_right = 144.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 32
+text = "+"
+
+[node name="SALMinusButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 160.0
+offset_top = 118.0
+offset_right = 210.0
+offset_bottom = 171.0
+theme_override_font_sizes/font_size = 32
+text = "-"
+
+[node name="MAGButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 28.0
+offset_top = 187.0
+offset_right = 102.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 32
+text = "Mag"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visibility_layer = 2
+offset_left = 258.0
+offset_top = 257.0
+offset_right = 558.0
+offset_bottom = 557.0
+script = ExtResource("3_mxwu8")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_cull_mask = 4294967293
+size = Vector2i(300, 300)
+render_target_update_mode = 4
+script = ExtResource("3_mu5ub")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+zoom = Vector2(10, 10)
+
+[node name="PHLevelLabel" type="Label" parent="."]
+offset_left = 436.0
+offset_top = 3.0
+offset_right = 489.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 32
+text = "PH:"
+
+[node name="SALLevelLabel" type="Label" parent="."]
+offset_left = 834.0
+offset_top = 8.0
+offset_right = 956.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Salinity:"
+
+[connection signal="pressed" from="PHPlusButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PHMinusButton" to="." method="_on_ph_minus_button_pressed"]
+[connection signal="pressed" from="SALPlusButton" to="." method="_on_sal_plus_button_pressed"]
+[connection signal="pressed" from="SALMinusButton" to="." method="_on_sal_minus_button_pressed"]
+[connection signal="pressed" from="MAGButton" to="." method="_on_mag_button_pressed"]
