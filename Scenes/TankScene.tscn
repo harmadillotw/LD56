@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scenes/tankcontroller.gd" id="1_6pk36"]
 [ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_4tpb6"]
-[ext_resource type="PackedScene" uid="uid://c812ld2h8kx5w" path="res://Scenes/creature/Creature.tscn" id="2_j5clf"]
 [ext_resource type="Script" path="res://Scenes/mag_viewport.gd" id="3_mu5ub"]
 [ext_resource type="Script" path="res://Scenes/mag_viewport_container.gd" id="3_mxwu8"]
+[ext_resource type="Script" path="res://Scenes/pause_node.gd" id="5_oe1va"]
 
 [node name="Tank" type="Node2D"]
 script = ExtResource("1_6pk36")
@@ -13,13 +13,9 @@ script = ExtResource("1_6pk36")
 position = Vector2(587.5, 322.5)
 scale = Vector2(10.1797, 6.03906)
 texture = ExtResource("2_4tpb6")
+metadata/_edit_lock_ = true
 
 [node name="CreaturesNode2D" type="Node2D" parent="."]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_j5clf")]
-
-[node name="CharacterBody2D2" parent="." instance=ExtResource("2_j5clf")]
-position = Vector2(867, 470)
 
 [node name="PHLabel" type="Label" parent="."]
 offset_left = 17.0
@@ -82,12 +78,82 @@ offset_bottom = 240.0
 theme_override_font_sizes/font_size = 32
 text = "Mag"
 
+[node name="AddLabel2" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 262.0
+offset_right = 105.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 32
+text = "Add"
+
+[node name="Add10Button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 91.0
+offset_top = 262.0
+offset_right = 141.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="Add5Button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 155.0
+offset_top = 262.0
+offset_right = 205.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 32
+text = "5"
+
+[node name="AddButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 225.0
+offset_top = 262.0
+offset_right = 275.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 32
+text = "1"
+
+[node name="SellLabel3" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 365.0
+offset_right = 108.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 32
+text = "Sell"
+
+[node name="Sell10Button2" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 90.0
+offset_top = 364.0
+offset_right = 140.0
+offset_bottom = 417.0
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="Sell5Button2" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 158.0
+offset_top = 368.0
+offset_right = 208.0
+offset_bottom = 421.0
+theme_override_font_sizes/font_size = 32
+text = "5"
+
+[node name="SellButton2" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 226.0
+offset_top = 369.0
+offset_right = 276.0
+offset_bottom = 422.0
+theme_override_font_sizes/font_size = 32
+text = "1"
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 visibility_layer = 2
-offset_left = 258.0
-offset_top = 257.0
-offset_right = 558.0
-offset_bottom = 557.0
+offset_left = 438.0
+offset_top = 304.0
+offset_right = 738.0
+offset_bottom = 604.0
 script = ExtResource("3_mxwu8")
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -100,11 +166,19 @@ script = ExtResource("3_mu5ub")
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
 zoom = Vector2(10, 10)
 
+[node name="MoneyLabel" type="Label" parent="."]
+offset_left = 244.0
+offset_top = 5.0
+offset_right = 350.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 32
+text = "Cash: "
+
 [node name="PHLevelLabel" type="Label" parent="."]
-offset_left = 436.0
-offset_top = 3.0
-offset_right = 489.0
-offset_bottom = 48.0
+offset_left = 609.0
+offset_top = 8.0
+offset_right = 662.0
+offset_bottom = 53.0
 theme_override_font_sizes/font_size = 32
 text = "PH:"
 
@@ -116,8 +190,38 @@ offset_bottom = 53.0
 theme_override_font_sizes/font_size = 32
 text = "Salinity:"
 
+[node name="PauseMenuNode" type="Node2D" parent="."]
+process_mode = 2
+script = ExtResource("5_oe1va")
+
+[node name="LoadButton" type="Button" parent="PauseMenuNode"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 136.0
+offset_top = 554.0
+offset_right = 219.0
+offset_bottom = 607.0
+theme_override_font_sizes/font_size = 32
+text = "Load"
+
+[node name="SaveButton" type="Button" parent="PauseMenuNode"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 23.0
+offset_top = 552.0
+offset_right = 103.0
+offset_bottom = 605.0
+theme_override_font_sizes/font_size = 32
+text = "Save"
+
 [connection signal="pressed" from="PHPlusButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PHMinusButton" to="." method="_on_ph_minus_button_pressed"]
 [connection signal="pressed" from="SALPlusButton" to="." method="_on_sal_plus_button_pressed"]
 [connection signal="pressed" from="SALMinusButton" to="." method="_on_sal_minus_button_pressed"]
 [connection signal="pressed" from="MAGButton" to="." method="_on_mag_button_pressed"]
+[connection signal="pressed" from="Add10Button" to="." method="_on_add_10_button_pressed"]
+[connection signal="pressed" from="Add5Button" to="." method="_on_add_5_button_pressed"]
+[connection signal="pressed" from="AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="Sell10Button2" to="." method="_on_sell_10_button_2_pressed"]
+[connection signal="pressed" from="Sell5Button2" to="." method="_on_sell_5_button_2_pressed"]
+[connection signal="pressed" from="SellButton2" to="." method="_on_sell_button_2_pressed"]
+[connection signal="pressed" from="PauseMenuNode/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="PauseMenuNode/SaveButton" to="." method="_on_save_button_pressed"]

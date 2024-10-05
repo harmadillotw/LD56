@@ -8,7 +8,7 @@ load_path = "res://.godot/imported/def_creature.png-93d117273970854adf1d5f1e4b17
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y0sr"]
 size = Vector2(130, 128)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Persist"]]
 physics_interpolation_mode = 1
 collision_layer = 0
 collision_mask = 0
