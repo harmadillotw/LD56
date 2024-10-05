@@ -32,6 +32,7 @@ var cash = 100
 @onready var cashLabel: Label = $MoneyLabel
 @onready var creatureNode2D: Node2D = $CreaturesNode2D
 @onready var pauseNode: Node2D = $PauseMenuNode
+@onready var shopNode: Node2D = $Shop
 @onready var saveButton: Button = $PauseMenuNode/SaveButton
 @onready var loadButton: Button = $PauseMenuNode/LoadButton
 @onready var itemsContainer: HBoxContainer = $ItemsHBoxContainer
@@ -45,7 +46,10 @@ func _ready() -> void:
 	magContainer.visible = false
 	saveButton.visible = false
 	loadButton.visible = false
+	shopNode.visible = false
 	pauseNode.unpauseSignal.connect(_on_unpause)
+	shopNode.exitShopSignal.connect(_on_exit_shop)
+	shopNode.buyItemSignal.connect(_on_buy_shop_item)
 	populateItems()
 		#instance.position = startLocation
 		#instance.global_position = startLocation
@@ -88,11 +92,11 @@ func addItem(type, count):
 	var instance = itemContainerScene.instantiate()
 	instance.type = type
 	instance.count =count
-	instance.useItemSignal.connect(_on_buy_item)
-	items_dict[type] = instance
+	instance.useItemSignal.connect(_on_use_item)
+	Global.items_dict[type] = instance
 	itemsContainer.add_child(instance)
 	
-func _on_buy_item(type : Global.ITEM_SET):
+func _on_use_item(type : Global.ITEM_SET):
 	match type:
 		Global.ITEM_SET.RED_SHRIMP:
 			for n in 10:
@@ -102,15 +106,15 @@ func _on_buy_item(type : Global.ITEM_SET):
 		Global.ITEM_SET.GREEN_SHRIMP:
 			pass
 		Global.ITEM_SET.PH_65_BUFFER:
-			on_ph_minus_button_pressed()
+			descreasePh()
 		Global.ITEM_SET.PH_72_BUFFER:
-			on_ph_minus_button_pressed()
+			descreasePh()
 		Global.ITEM_SET.PH_85_BUFFER:
-			_on_button_pressed()
+			increasePh()
 		Global.ITEM_SET.NATURAL_SALT:
-			_on_sal_plus_button_pressed()
+			increaseSalt()
 		Global.ITEM_SET.DECHLORINATOR:
-			_on_sal_minus_button_pressed()
+			decreaseSalt()
 		Global.ITEM_SET.PH_TEST_KIT:
 			do_ph_test()
 		Global.ITEM_SET.SALINITY_TEST_KIT:
@@ -122,33 +126,36 @@ func do_salinity_test():
 	salLevel.text = "Salinity: " + str(salinity)
 func _on_breed():
 	print("do breed")
-	add_creature(0)
+	if creatureCount < Global.max_creature_count:
+		add_creature(0)
 
 func _on_unpause():
 	saveButton.visible = !saveButton.visible
 	loadButton.visible = !loadButton.visible
+func _on_exit_shop():
+	if get_tree().paused:
+		get_tree().paused = !get_tree().paused
+	shopNode.visible = false
+func _on_buy_shop_item(type : Global.ITEM_SET):
+	Global.items_dict[type].count += 1
 	
-func _on_button_pressed() -> void:
+func increasePh() -> void:
 	ph += 0.2
 	if ph > MAX_PH:
 		ph = MAX_PH
-func on_ph_minus_button_pressed():
+func descreasePh():
 	ph -= 0.2
 	if ph < 0.0:
 		ph = 0.0
 			
-func _on_ph_minus_button_pressed() -> void:
-	ph -= 0.2
-	if ph < 0.0:
-		ph = 0.0
 
-func _on_sal_plus_button_pressed() -> void:
+func increaseSalt() -> void:
 	salinity += 0.2
 	if salinity > MAX_SAL:
 		salinity = MAX_SAL
 
 
-func _on_sal_minus_button_pressed() -> void:
+func decreaseSalt() -> void:
 	salinity -= 0.2
 	if salinity < 0.0:
 		salinity = 0.0
@@ -177,17 +184,6 @@ func add_creature(cost) -> void:
 	print("Creature Count ", creatureCount)
 	creatureNode2D.add_child(instance)
 	
-
-func _on_add_button_pressed() -> void:
-	add_creature(1)
-
-func _on_add_5_button_pressed() -> void:
-	for n in 5:
-		add_creature(1)
-
-func _on_add_10_button_pressed() -> void:
-	for n in 10:
-		add_creature(1)
 
 func sell_creature(repeat: bool) -> void:
 	var cpos = rng.randi_range(0,creatureArray.size())
@@ -301,3 +297,9 @@ func load_game():
 			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
 				continue
 			new_object.set(i, node_data[i])
+
+
+func _on_shop_button_pressed() -> void:
+	if !get_tree().paused:
+		get_tree().paused = !get_tree().paused
+	shopNode.visible = true

@@ -1,6 +1,7 @@
 extends Panel
 
-signal useItemSignal
+
+signal buyItemButtonSignal
 
 @export var type : Global.ITEM_SET
 @export var count : int
@@ -12,16 +13,13 @@ signal useItemSignal
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setText()
-	countLabel.text = str(count)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	countLabel.text = str(count)
-	if count > 0:
-		buyButton.visible = true
-	else:
-		buyButton.visible = false
+	countLabel.text = str(Global.items_dict[type].count)
+	#countLabel.text = str(count)
 func setText():
 	match type:
 		Global.ITEM_SET.RED_SHRIMP:
@@ -54,10 +52,9 @@ func setText():
 		Global.ITEM_SET.SALINITY_TEST_KIT:
 			labelText = "Salinity Test Kit"
 			textLabel.text = labelText
-	
+
+
 func _on_button_pressed() -> void:
 	count -= 1
 	
-	useItemSignal.emit(type)
-	
-	
+	buyItemButtonSignal.emit(type)

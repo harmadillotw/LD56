@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck2xxvtblv8yk"]
+[gd_scene load_steps=7 format=3 uid="uid://ck2xxvtblv8yk"]
 
 [ext_resource type="Script" path="res://Scenes/tankcontroller.gd" id="1_6pk36"]
 [ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_4tpb6"]
 [ext_resource type="Script" path="res://Scenes/mag_viewport.gd" id="3_mu5ub"]
 [ext_resource type="Script" path="res://Scenes/mag_viewport_container.gd" id="3_mxwu8"]
+[ext_resource type="PackedScene" uid="uid://dy0ri8tcu3cbl" path="res://Scenes/ShopScene.tscn" id="5_1ocys"]
 [ext_resource type="Script" path="res://Scenes/pause_node.gd" id="5_oe1va"]
 
 [node name="Tank" type="Node2D"]
@@ -23,134 +24,56 @@ offset_bottom = 99.0
 
 [node name="CreaturesNode2D" type="Node2D" parent="."]
 
-[node name="PHLabel" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 418.0
-offset_right = 111.0
-offset_bottom = 464.0
-theme_override_font_sizes/font_size = 32
-text = "PH"
-
-[node name="PHPlusButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-offset_left = 98.0
-offset_top = 422.0
-offset_right = 148.0
-offset_bottom = 475.0
-theme_override_font_sizes/font_size = 32
-text = "+"
-
-[node name="PHMinusButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-offset_left = 174.0
-offset_top = 417.0
-offset_right = 224.0
-offset_bottom = 470.0
-theme_override_font_sizes/font_size = 32
-text = "-"
-
-[node name="SALLabel" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 477.0
-offset_right = 111.0
-offset_bottom = 523.0
-theme_override_font_sizes/font_size = 32
-text = "SAL"
-
-[node name="SALPlusButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-offset_left = 102.0
-offset_top = 470.0
-offset_right = 152.0
-offset_bottom = 523.0
-theme_override_font_sizes/font_size = 32
-text = "+"
-
-[node name="SALMinusButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-offset_left = 174.0
-offset_top = 472.0
-offset_right = 224.0
-offset_bottom = 525.0
-theme_override_font_sizes/font_size = 32
-text = "-"
-
 [node name="MAGButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 28.0
-offset_top = 187.0
-offset_right = 102.0
-offset_bottom = 240.0
+offset_left = 29.0
+offset_top = 478.0
+offset_right = 103.0
+offset_bottom = 531.0
 theme_override_font_sizes/font_size = 32
 text = "Mag"
 
-[node name="AddLabel2" type="Label" parent="."]
-offset_left = 18.0
-offset_top = 262.0
-offset_right = 105.0
-offset_bottom = 308.0
-theme_override_font_sizes/font_size = 32
-text = "Add"
-
-[node name="Add10Button" type="Button" parent="."]
+[node name="ShopButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 91.0
-offset_top = 262.0
-offset_right = 141.0
-offset_bottom = 315.0
+offset_left = 36.0
+offset_top = 193.0
+offset_right = 121.0
+offset_bottom = 246.0
 theme_override_font_sizes/font_size = 32
-text = "10"
-
-[node name="Add5Button" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-offset_left = 155.0
-offset_top = 262.0
-offset_right = 205.0
-offset_bottom = 315.0
-theme_override_font_sizes/font_size = 32
-text = "5"
-
-[node name="AddButton" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-offset_left = 225.0
-offset_top = 262.0
-offset_right = 275.0
-offset_bottom = 315.0
-theme_override_font_sizes/font_size = 32
-text = "1"
+text = "Shop"
 
 [node name="SellLabel3" type="Label" parent="."]
-offset_left = 21.0
-offset_top = 365.0
-offset_right = 108.0
-offset_bottom = 411.0
+offset_left = 28.0
+offset_top = 405.0
+offset_right = 115.0
+offset_bottom = 451.0
 theme_override_font_sizes/font_size = 32
 text = "Sell"
 
 [node name="Sell10Button2" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 90.0
-offset_top = 364.0
-offset_right = 140.0
-offset_bottom = 417.0
+offset_left = 97.0
+offset_top = 404.0
+offset_right = 147.0
+offset_bottom = 457.0
 theme_override_font_sizes/font_size = 32
 text = "10"
 
 [node name="Sell5Button2" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 158.0
-offset_top = 368.0
-offset_right = 208.0
-offset_bottom = 421.0
+offset_left = 165.0
+offset_top = 408.0
+offset_right = 215.0
+offset_bottom = 461.0
 theme_override_font_sizes/font_size = 32
 text = "5"
 
 [node name="SellButton2" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 226.0
-offset_top = 369.0
-offset_right = 276.0
-offset_bottom = 422.0
+offset_left = 233.0
+offset_top = 409.0
+offset_right = 283.0
+offset_bottom = 462.0
 theme_override_font_sizes/font_size = 32
 text = "1"
 
@@ -173,28 +96,30 @@ script = ExtResource("3_mu5ub")
 zoom = Vector2(10, 10)
 
 [node name="MoneyLabel" type="Label" parent="."]
-offset_left = 267.0
-offset_top = 122.0
-offset_right = 373.0
-offset_bottom = 167.0
+offset_left = 31.0
+offset_top = 129.0
+offset_right = 137.0
+offset_bottom = 174.0
 theme_override_font_sizes/font_size = 32
 text = "Cash: "
 
 [node name="PHLevelLabel" type="Label" parent="."]
-offset_left = 552.0
-offset_top = 128.0
-offset_right = 605.0
-offset_bottom = 173.0
+offset_left = 32.0
+offset_top = 284.0
+offset_right = 85.0
+offset_bottom = 329.0
 theme_override_font_sizes/font_size = 32
 text = "PH:"
 
 [node name="SALLevelLabel" type="Label" parent="."]
-offset_left = 787.0
-offset_top = 151.0
-offset_right = 909.0
-offset_bottom = 196.0
+offset_left = 30.0
+offset_top = 338.0
+offset_right = 152.0
+offset_bottom = 383.0
 theme_override_font_sizes/font_size = 32
 text = "Salinity:"
+
+[node name="Shop" parent="." instance=ExtResource("5_1ocys")]
 
 [node name="PauseMenuNode" type="Node2D" parent="."]
 process_mode = 2
@@ -218,14 +143,8 @@ offset_bottom = 605.0
 theme_override_font_sizes/font_size = 32
 text = "Save"
 
-[connection signal="pressed" from="PHPlusButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="PHMinusButton" to="." method="_on_ph_minus_button_pressed"]
-[connection signal="pressed" from="SALPlusButton" to="." method="_on_sal_plus_button_pressed"]
-[connection signal="pressed" from="SALMinusButton" to="." method="_on_sal_minus_button_pressed"]
 [connection signal="pressed" from="MAGButton" to="." method="_on_mag_button_pressed"]
-[connection signal="pressed" from="Add10Button" to="." method="_on_add_10_button_pressed"]
-[connection signal="pressed" from="Add5Button" to="." method="_on_add_5_button_pressed"]
-[connection signal="pressed" from="AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Sell10Button2" to="." method="_on_sell_10_button_2_pressed"]
 [connection signal="pressed" from="Sell5Button2" to="." method="_on_sell_5_button_2_pressed"]
 [connection signal="pressed" from="SellButton2" to="." method="_on_sell_button_2_pressed"]
