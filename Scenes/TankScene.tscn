@@ -15,57 +15,63 @@ scale = Vector2(10.1797, 6.03906)
 texture = ExtResource("2_4tpb6")
 metadata/_edit_lock_ = true
 
+[node name="ItemsHBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 23.0
+offset_top = 10.0
+offset_right = 1139.0
+offset_bottom = 99.0
+
 [node name="CreaturesNode2D" type="Node2D" parent="."]
 
 [node name="PHLabel" type="Label" parent="."]
-offset_left = 17.0
-offset_top = 40.0
-offset_right = 104.0
-offset_bottom = 86.0
+offset_left = 24.0
+offset_top = 418.0
+offset_right = 111.0
+offset_bottom = 464.0
 theme_override_font_sizes/font_size = 32
 text = "PH"
 
 [node name="PHPlusButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 95.0
-offset_top = 40.0
-offset_right = 130.0
-offset_bottom = 93.0
+offset_left = 98.0
+offset_top = 422.0
+offset_right = 148.0
+offset_bottom = 475.0
 theme_override_font_sizes/font_size = 32
 text = "+"
 
 [node name="PHMinusButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 160.0
-offset_top = 42.0
-offset_right = 210.0
-offset_bottom = 95.0
+offset_left = 174.0
+offset_top = 417.0
+offset_right = 224.0
+offset_bottom = 470.0
 theme_override_font_sizes/font_size = 32
 text = "-"
 
 [node name="SALLabel" type="Label" parent="."]
-offset_left = 14.0
-offset_top = 118.0
-offset_right = 101.0
-offset_bottom = 164.0
+offset_left = 24.0
+offset_top = 477.0
+offset_right = 111.0
+offset_bottom = 523.0
 theme_override_font_sizes/font_size = 32
 text = "SAL"
 
 [node name="SALPlusButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 94.0
-offset_top = 116.0
-offset_right = 144.0
-offset_bottom = 169.0
+offset_left = 102.0
+offset_top = 470.0
+offset_right = 152.0
+offset_bottom = 523.0
 theme_override_font_sizes/font_size = 32
 text = "+"
 
 [node name="SALMinusButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 160.0
-offset_top = 118.0
-offset_right = 210.0
-offset_bottom = 171.0
+offset_left = 174.0
+offset_top = 472.0
+offset_right = 224.0
+offset_bottom = 525.0
 theme_override_font_sizes/font_size = 32
 text = "-"
 
@@ -167,26 +173,26 @@ script = ExtResource("3_mu5ub")
 zoom = Vector2(10, 10)
 
 [node name="MoneyLabel" type="Label" parent="."]
-offset_left = 244.0
-offset_top = 5.0
-offset_right = 350.0
-offset_bottom = 50.0
+offset_left = 267.0
+offset_top = 122.0
+offset_right = 373.0
+offset_bottom = 167.0
 theme_override_font_sizes/font_size = 32
 text = "Cash: "
 
 [node name="PHLevelLabel" type="Label" parent="."]
-offset_left = 609.0
-offset_top = 8.0
-offset_right = 662.0
-offset_bottom = 53.0
+offset_left = 552.0
+offset_top = 128.0
+offset_right = 605.0
+offset_bottom = 173.0
 theme_override_font_sizes/font_size = 32
 text = "PH:"
 
 [node name="SALLevelLabel" type="Label" parent="."]
-offset_left = 834.0
-offset_top = 8.0
-offset_right = 956.0
-offset_bottom = 53.0
+offset_left = 787.0
+offset_top = 151.0
+offset_right = 909.0
+offset_bottom = 196.0
 theme_override_font_sizes/font_size = 32
 text = "Salinity:"
 

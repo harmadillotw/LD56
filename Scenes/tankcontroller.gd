@@ -2,6 +2,20 @@ extends Node2D
 
 const MAX_PH = 14.0
 const MAX_SAL = 10.0
+# Products
+var redShrimp = 0
+var blueShrimp = 0
+var greenShrimp = 0
+var pH65Buffer = 0
+var pH72Buffer = 0
+var pH83Buffer = 0
+var naturalSalt = 0
+var declorinator = 0
+var pHTestKit = 0
+var salinityTestKit = 0
+
+var items_dict = {}
+
 var ph = 7.0
 var salinity = 5.0
 var light = 10.0
@@ -10,6 +24,8 @@ var salinity_change = 0.01
 var creatureArray = []
 var creatureCount = 0
 var cash = 100
+
+
 @onready var magContainer: SubViewportContainer = $SubViewportContainer
 @onready var phLevel: Label = $PHLevelLabel
 @onready var salLevel: Label = $SALLevelLabel
@@ -18,9 +34,11 @@ var cash = 100
 @onready var pauseNode: Node2D = $PauseMenuNode
 @onready var saveButton: Button = $PauseMenuNode/SaveButton
 @onready var loadButton: Button = $PauseMenuNode/LoadButton
+@onready var itemsContainer: HBoxContainer = $ItemsHBoxContainer
 
 
 var creatureScene = preload("res://Scenes/creature/Creature.tscn")
+var itemContainerScene = preload("res://Scenes/itemContainer.tscn")
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +46,7 @@ func _ready() -> void:
 	saveButton.visible = false
 	loadButton.visible = false
 	pauseNode.unpauseSignal.connect(_on_unpause)
+	populateItems()
 		#instance.position = startLocation
 		#instance.global_position = startLocation
 
@@ -41,8 +60,8 @@ func _process(delta: float) -> void:
 	#		get_tree().paused = !get_tree().paused
 	#		saveButton.visible = !saveButton.visible
 	#		loadButton.visible = !loadButton.visible
-	phLevel.text = "PH: " + str(ph)
-	salLevel.text = "Salinity: " + str(salinity)
+	#phLevel.text = "PH: " + str(ph)
+	#salLevel.text = "Salinity: " + str(salinity)
 	cashLabel.text = "Cash: " + str(cash)
 
 func _input(_event): 
@@ -52,6 +71,55 @@ func _input(_event):
 			get_tree().paused = !get_tree().paused
 			saveButton.visible = !saveButton.visible
 			loadButton.visible = !loadButton.visible
+			
+func populateItems():
+	addItem(Global.ITEM_SET.RED_SHRIMP,1)
+	addItem(Global.ITEM_SET.BLUE_SHRIMP,2)
+	addItem(Global.ITEM_SET.GREEN_SHRIMP,3)
+	addItem(Global.ITEM_SET.PH_65_BUFFER,10)
+	addItem(Global.ITEM_SET.PH_72_BUFFER,10)
+	addItem(Global.ITEM_SET.PH_85_BUFFER,10)
+	addItem(Global.ITEM_SET.NATURAL_SALT, 10)
+	addItem(Global.ITEM_SET.DECHLORINATOR,10)
+	addItem(Global.ITEM_SET.PH_TEST_KIT,10)
+	addItem(Global.ITEM_SET.SALINITY_TEST_KIT, 10)
+	pass
+func addItem(type, count):
+	var instance = itemContainerScene.instantiate()
+	instance.type = type
+	instance.count =count
+	instance.useItemSignal.connect(_on_buy_item)
+	items_dict[type] = instance
+	itemsContainer.add_child(instance)
+	
+func _on_buy_item(type : Global.ITEM_SET):
+	match type:
+		Global.ITEM_SET.RED_SHRIMP:
+			for n in 10:
+				add_creature(1)
+		Global.ITEM_SET.BLUE_SHRIMP:
+			pass
+		Global.ITEM_SET.GREEN_SHRIMP:
+			pass
+		Global.ITEM_SET.PH_65_BUFFER:
+			on_ph_minus_button_pressed()
+		Global.ITEM_SET.PH_72_BUFFER:
+			on_ph_minus_button_pressed()
+		Global.ITEM_SET.PH_85_BUFFER:
+			_on_button_pressed()
+		Global.ITEM_SET.NATURAL_SALT:
+			_on_sal_plus_button_pressed()
+		Global.ITEM_SET.DECHLORINATOR:
+			_on_sal_minus_button_pressed()
+		Global.ITEM_SET.PH_TEST_KIT:
+			do_ph_test()
+		Global.ITEM_SET.SALINITY_TEST_KIT:
+			do_salinity_test()
+			
+func do_ph_test():
+	phLevel.text = "PH: " + str(ph)
+func do_salinity_test():
+	salLevel.text = "Salinity: " + str(salinity)
 func _on_breed():
 	print("do breed")
 	add_creature(0)
@@ -64,7 +132,11 @@ func _on_button_pressed() -> void:
 	ph += 0.2
 	if ph > MAX_PH:
 		ph = MAX_PH
-
+func on_ph_minus_button_pressed():
+	ph -= 0.2
+	if ph < 0.0:
+		ph = 0.0
+			
 func _on_ph_minus_button_pressed() -> void:
 	ph -= 0.2
 	if ph < 0.0:

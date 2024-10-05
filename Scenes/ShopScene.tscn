@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dy0ri8tcu3cbl"]
+
+[node name="Shop" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 14.0
+offset_top = 23.0
+offset_right = 1120.0
+offset_bottom = 626.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_right = 1076.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 64
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 133.0
+offset_right = 1042.0
+offset_bottom = 571.0
+
+[node name="AquaticsHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="RedShrimpButton" type="Button" parent="Panel/VBoxContainer/AquaticsHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Red Shrimp"
+
+[node name="BlueShripButton" type="Button" parent="Panel/VBoxContainer/AquaticsHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Blue Shrimp"
+
+[node name="GreenShrimpButton" type="Button" parent="Panel/VBoxContainer/AquaticsHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Green shrimp"
+
+[node name="WaterConditioningHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PH65BufferButton" type="Button" parent="Panel/VBoxContainer/WaterConditioningHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+pH 6.5 Buffer"
+
+[node name="PH72BufferButton" type="Button" parent="Panel/VBoxContainer/WaterConditioningHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+pH 7.2 Buffer"
+
+[node name="PH83BufferButton" type="Button" parent="Panel/VBoxContainer/WaterConditioningHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+pH 8.3 Buffer"
+
+[node name="SaltButton" type="Button" parent="Panel/VBoxContainer/WaterConditioningHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Natural Salt"
+
+[node name="WaterButton" type="Button" parent="Panel/VBoxContainer/WaterConditioningHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Dechlorinator
+"
+
+[node name="TestsHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TestsHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+ph Test Kit"
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer/TestsHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Salinity
+Test Kit"
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer/TestsHB"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Buy
+Out Of Stock"
