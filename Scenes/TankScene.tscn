@@ -152,6 +152,7 @@ visible = false
 
 [node name="PauseMenuNode" type="Node2D" parent="."]
 process_mode = 2
+visible = false
 script = ExtResource("5_oe1va")
 
 [node name="Panel" type="Panel" parent="PauseMenuNode"]
@@ -202,6 +203,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "TAB - Pause menu
 Right Click/M - Magnify"
 
+[node name="NextTrackButton" type="Button" parent="."]
+offset_left = 786.0
+offset_top = 598.0
+offset_right = 829.0
+offset_bottom = 629.0
+text = "next"
+
 [connection signal="pressed" from="MAGButton" to="." method="_on_mag_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Sell10Button2" to="." method="_on_sell_10_button_2_pressed"]
@@ -209,4 +217,5 @@ Right Click/M - Magnify"
 [connection signal="pressed" from="SellButton2" to="." method="_on_sell_button_2_pressed"]
 [connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/ExitButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="NextTrackButton" to="." method="_on_next_track_button_pressed"]

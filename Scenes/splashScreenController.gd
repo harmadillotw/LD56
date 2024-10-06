@@ -6,7 +6,7 @@ const pre_main_menu = preload("res://Scenes/MainMenuScene.tscn")
 @onready var shrimp2: Sprite2D = $Sprite2D3
 @onready var shrimp3: Sprite2D = $Sprite2D4
 
-var user_prefs: UserPreference
+var user_prefs: UserPreferences
 
 
 # Called when the node enters the scene tree for the first time.

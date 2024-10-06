@@ -410,3 +410,17 @@ func save():
 		
 		}
 	return save_dict
+
+
+func _on_exit_button_pressed() -> void:
+	if get_tree().paused:
+		get_tree().paused = !get_tree().paused
+		#saveButton.visible = !saveButton.visible
+		#loadButton.visible = !loadButton.visible
+		pauseNode.visible = !pauseNode.visible
+	MasterAudioStreamPlayer.play_fx_click2()
+	get_tree().change_scene_to_file("res://Scenes/MainMenuScene.tscn")
+
+
+func _on_next_track_button_pressed() -> void:
+	MasterAudioStreamPlayer.play_music_track2()
