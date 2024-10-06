@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxymeb6ef7x66"]
+
+[ext_resource type="Script" path="res://Scenes/instructionsSceneController.gd" id="1_0fphr"]
+[ext_resource type="Texture2D" uid="uid://d0vjyos8rxxlr" path="res://images/background.png" id="1_nfrs8"]
+[ext_resource type="PackedScene" uid="uid://8cjleavtdwe8" path="res://Scenes/InstructionsPanel.tscn" id="3_g4lo0"]
+[ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="4_jil1q"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="5_y4adb"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0fphr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(593, 303)
+scale = Vector2(1.806, 1.248)
+texture = ExtResource("1_nfrs8")
+
+[node name="Panel" parent="." instance=ExtResource("3_g4lo0")]
+offset_top = 11.0
+offset_bottom = 597.0
+
+[node name="ReturnButton" type="Button" parent="."]
+offset_left = 833.0
+offset_top = 499.0
+offset_right = 1070.0
+offset_bottom = 579.0
+theme = ExtResource("4_jil1q")
+theme_override_fonts/font = ExtResource("5_y4adb")
+theme_override_font_sizes/font_size = 32
+text = "Return"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

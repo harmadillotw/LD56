@@ -51,6 +51,7 @@ autoplay = "default"
 frame_progress = 0.513262
 
 [node name="HealthLabel" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -26.0
 offset_right = 125.0

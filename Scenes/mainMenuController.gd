@@ -36,3 +36,8 @@ func _on_credits_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	MasterAudioStreamPlayer.play_fx_click2()
 	get_tree().quit()
+
+
+func _on_instructions_button_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
+	get_tree().change_scene_to_file("res://Scenes/InstructionsScene.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck2xxvtblv8yk"]
+[gd_scene load_steps=16 format=3 uid="uid://ck2xxvtblv8yk"]
 
 [ext_resource type="Script" path="res://Scenes/tankcontroller.gd" id="1_6pk36"]
 [ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_4tpb6"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://br1o74gcmtdo0" path="res://Scenes/phTester.tscn" id="5_l8gks"]
 [ext_resource type="Script" path="res://Scenes/pause_node.gd" id="5_oe1va"]
 [ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="10_hhhnw"]
+[ext_resource type="PackedScene" uid="uid://8cjleavtdwe8" path="res://Scenes/InstructionsPanel.tscn" id="11_feewt"]
+[ext_resource type="Texture2D" uid="uid://cb06htjkl5roj" path="res://images/aquarium.png" id="12_03udo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gpk8c"]
 load_path = "res://.godot/imported/aquarium.png-024b0fb3f1e0967031e3752280c26d5d.ctex"
@@ -31,9 +33,16 @@ texture = ExtResource("2_4tpb6")
 metadata/_edit_lock_ = true
 
 [node name="AquariumSprite2D" type="Sprite2D" parent="."]
+visible = false
+top_level = true
 position = Vector2(732.5, 377)
 scale = Vector2(1.02875, 0.87)
 texture = SubResource("CompressedTexture2D_gpk8c")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(732.5, 377)
+scale = Vector2(0.989, 0.87)
+texture = ExtResource("12_03udo")
 
 [node name="ItemsHBoxContainer" type="HBoxContainer" parent="."]
 offset_left = 23.0
@@ -66,7 +75,7 @@ scale = Vector2(0.5, 0.5)
 custom_minimum_size = Vector2(50, 50)
 offset_left = 14.0
 offset_top = 341.0
-offset_right = 116.0
+offset_right = 129.0
 offset_bottom = 401.0
 theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
 theme_override_fonts/font = ExtResource("5_e6bnp")
@@ -140,12 +149,31 @@ script = ExtResource("3_mu5ub")
 zoom = Vector2(10, 10)
 
 [node name="MoneyLabel" type="Label" parent="."]
-offset_left = 132.0
-offset_top = 348.0
-offset_right = 238.0
-offset_bottom = 393.0
+offset_left = 161.0
+offset_top = 351.0
+offset_right = 267.0
+offset_bottom = 396.0
 theme_override_font_sizes/font_size = 32
 text = "Cash: "
+
+[node name="Label" type="Label" parent="."]
+offset_left = 886.0
+offset_top = 574.0
+offset_right = 1129.0
+offset_bottom = 623.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TAB - Pause menu
+Right Click/M - Magnify"
+
+[node name="InstructionsButton" type="Button" parent="."]
+offset_left = 224.0
+offset_top = 589.0
+offset_right = 316.0
+offset_bottom = 649.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
+theme_override_font_sizes/font_size = 32
+text = "Inst"
 
 [node name="Shop" parent="." instance=ExtResource("5_1ocys")]
 visible = false
@@ -186,6 +214,14 @@ theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "Save"
 
+[node name="ResumeButton" type="Button" parent="PauseMenuNode/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("10_hhhnw")
+theme_override_fonts/font = ExtResource("5_e6bnp")
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
 [node name="ExitButton" type="Button" parent="PauseMenuNode/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -194,28 +230,28 @@ theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "Exit"
 
-[node name="Label" type="Label" parent="."]
-offset_left = 886.0
-offset_top = 574.0
-offset_right = 1129.0
-offset_bottom = 623.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "TAB - Pause menu
-Right Click/M - Magnify"
+[node name="InstructionsPanel" parent="." instance=ExtResource("11_feewt")]
+visible = false
 
-[node name="NextTrackButton" type="Button" parent="."]
-offset_left = 786.0
-offset_top = 598.0
-offset_right = 829.0
-offset_bottom = 629.0
-text = "next"
+[node name="CloseButton" type="Button" parent="InstructionsPanel"]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 497.0
+offset_right = 889.0
+offset_bottom = 549.0
+theme = ExtResource("10_hhhnw")
+theme_override_fonts/font = ExtResource("5_e6bnp")
+theme_override_font_sizes/font_size = 32
+text = "Close"
 
 [connection signal="pressed" from="MAGButton" to="." method="_on_mag_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Sell10Button2" to="." method="_on_sell_10_button_2_pressed"]
 [connection signal="pressed" from="Sell5Button2" to="." method="_on_sell_5_button_2_pressed"]
 [connection signal="pressed" from="SellButton2" to="." method="_on_sell_button_2_pressed"]
+[connection signal="pressed" from="InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="NextTrackButton" to="." method="_on_next_track_button_pressed"]
+[connection signal="pressed" from="InstructionsPanel/CloseButton" to="." method="_on_close_button_pressed"]

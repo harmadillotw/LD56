@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=3 uid="uid://8cjleavtdwe8"]
+
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="1_rakce"]
+[ext_resource type="Script" path="res://Scenes/instructionsPanelController.gd" id="1_u8jvj"]
+[ext_resource type="Texture2D" uid="uid://c8ltwyxnvluci" path="res://Scenes/creature/shrimp1_s.png" id="2_ad0xg"]
+[ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="3_xsydn"]
+[ext_resource type="Texture2D" uid="uid://b387s0mx7utg1" path="res://images/bottle_ph65.png" id="4_rtmet"]
+[ext_resource type="Texture2D" uid="uid://q0pdcfgun21u" path="res://images/ph_test_kit.png" id="5_gp2lw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y06um"]
+bg_color = Color(0.498039, 1, 1, 1)
+
+[node name="Panel" type="Panel"]
+process_mode = 3
+offset_left = 42.0
+offset_top = 26.0
+offset_right = 1100.0
+offset_bottom = 612.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y06um")
+script = ExtResource("1_u8jvj")
+
+[node name="PageNode1" type="Node2D" parent="."]
+
+[node name="TitleLabel1" type="Label" parent="PageNode1"]
+offset_left = 412.0
+offset_top = 22.0
+offset_right = 601.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("1_rakce")
+theme_override_font_sizes/font_size = 32
+text = "Aquatics"
+
+[node name="TextLabel1" type="Label" parent="PageNode1"]
+offset_left = 314.0
+offset_top = 96.0
+offset_right = 1046.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Each species of shrimp(red, blue and green) require a different
+ environment to survive. In the tank it is a preferred pH range 
+preferred salinity range. These values can be changed by
+using Water Conditioners and observed using tests. Both can
+bought from the store. 
+You can also observe the shrimp directly. When out its
+preferred pH range the shrimp will start to bleech(lose colour).
+Outside it's preferred salinity range it will become transparent.
+If outside it's preferred environment for too long the shrimp
+will die"
+
+[node name="Sprite2D1" type="Sprite2D" parent="PageNode1"]
+position = Vector2(150, 300)
+texture = ExtResource("2_ad0xg")
+
+[node name="PageNode2" type="Node2D" parent="."]
+visible = false
+
+[node name="TitleLabel2" type="Label" parent="PageNode2"]
+offset_left = 344.0
+offset_top = 28.0
+offset_right = 744.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("1_rakce")
+theme_override_font_sizes/font_size = 32
+text = "Water Conditioners"
+
+[node name="TextLabel2" type="Label" parent="PageNode2"]
+offset_left = 314.0
+offset_top = 96.0
+offset_right = 1046.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Water Conditioners can be used to alter the pH or Salinity of
+the tank. They can be bought from the shop."
+
+[node name="Sprite2D2" type="Sprite2D" parent="PageNode2"]
+position = Vector2(150, 300)
+texture = ExtResource("4_rtmet")
+
+[node name="PageNode3" type="Node2D" parent="."]
+visible = false
+
+[node name="TitleLabel3" type="Label" parent="PageNode3"]
+offset_left = 459.0
+offset_top = 30.0
+offset_right = 649.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("1_rakce")
+theme_override_font_sizes/font_size = 32
+text = "Tests"
+horizontal_alignment = 1
+
+[node name="TextLabel3" type="Label" parent="PageNode3"]
+offset_left = 314.0
+offset_top = 96.0
+offset_right = 1046.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Tests allow you to see the pH or Salinity of the tank at the time 
+the test is used.
+They can be bought from the shop."
+
+[node name="Sprite2D3" type="Sprite2D" parent="PageNode3"]
+position = Vector2(150, 300)
+texture = ExtResource("5_gp2lw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 470.0
+offset_right = 762.0
+offset_bottom = 570.0
+theme_override_constants/separation = 10
+
+[node name="Button1" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("3_xsydn")
+theme_override_fonts/font = ExtResource("1_rakce")
+text = "1"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("3_xsydn")
+theme_override_fonts/font = ExtResource("1_rakce")
+text = "2"
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = ExtResource("3_xsydn")
+theme_override_fonts/font = ExtResource("1_rakce")
+text = "3"
+
+[connection signal="pressed" from="HBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

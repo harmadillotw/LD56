@@ -40,6 +40,8 @@ var creatureCount = 0
 @onready var phLevelDisplay: AnimatedSprite2D = $PHAnimatedSprite2D
 @onready var salLevelDisplay: AnimatedSprite2D = $SalAnimatedSprite2D
 
+@onready var instructionPanel: Panel = $InstructionsPanel
+
 var runTestWav = preload("res://Audio/runTest.wav")	
 
 var creatureScene = preload("res://Scenes/creature/Creature.tscn")
@@ -47,12 +49,13 @@ var itemContainerScene = preload("res://Scenes/itemContainer.tscn")
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.cash = 300
+	Global.cash = 40
 	magContainer.visible = false
 	#saveButton.visible = false
 	pauseNode.visible = false
 	#loadButton.visible = false
 	shopNode.visible = false
+	instructionPanel.visible = false
 	pauseNode.unpauseSignal.connect(_on_unpause)
 	shopNode.exitShopSignal.connect(_on_exit_shop)
 	shopNode.buyItemSignal.connect(_on_buy_shop_item)
@@ -422,5 +425,23 @@ func _on_exit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/MainMenuScene.tscn")
 
 
-func _on_next_track_button_pressed() -> void:
-	MasterAudioStreamPlayer.play_music_track2()
+
+func _on_close_button_pressed() -> void:
+	if get_tree().paused:
+		get_tree().paused = !get_tree().paused
+	instructionPanel.visible = false
+
+
+func _on_instructions_button_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
+	if !get_tree().paused:
+		get_tree().paused = !get_tree().paused
+	instructionPanel.visible = true
+
+
+func _on_resume_button_pressed() -> void:
+	if get_tree().paused:
+			get_tree().paused = !get_tree().paused
+			#saveButton.visible = !saveButton.visible
+			#loadButton.visible = !loadButton.visible
+	pauseNode.visible = !pauseNode.visible

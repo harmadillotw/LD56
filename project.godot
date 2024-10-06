@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LD 56"
-run/main_scene="res://Scenes/TankScene.tscn"
+run/main_scene="res://Scenes/splashScreenScene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.gd"
 MasterAudioStreamPlayer="*res://Scripts/MasterAudioStreamPlayer.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 
