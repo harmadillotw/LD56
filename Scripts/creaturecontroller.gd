@@ -5,14 +5,16 @@ signal dieSignal
 @export var speed = 10
 @export var minPh = 5.0
 @export var maxPh = 9.0
-@export var minSal = 5.0
-@export var maxSal = 6.0
+@export var minSal = 0.0
+@export var maxSal = 2.0
 @export var health = 100.0
+@export var type : Global.ITEM_SET
 var localPh
 var phStep
 var localSal
 var localSaturation = 1.0
 var localAlpa = 1.0
+
 
 var breedTimer = 300
 var HLDiv = 5.0
@@ -22,7 +24,14 @@ var tank : Node2D
 var rng = RandomNumberGenerator.new()
 var lastBreed = 1
 func _ready() -> void:
-	color_sprite.modulate = Color(1,0,0,1)
+	match type:
+		Global.ITEM_SET.RED_SHRIMP:
+			color_sprite.modulate = Color(1,0,0,1)
+		Global.ITEM_SET.BLUE_SHRIMP:
+			color_sprite.modulate = Color(0,0,1,1)
+		Global.ITEM_SET.GREEN_SHRIMP:
+			color_sprite.modulate = Color(0,1,0,1)
+	#color_sprite.modulate = Color(1,0,0,1)
 	color_sprite.modulate.s = 1.0
 	color_sprite.modulate.a = 1.0
 	velocity = Vector2(0,0)
@@ -87,7 +96,7 @@ func breed() -> void:
 	if doBreed > 30.0 && lastBreed > breedTimer:
 		lastBreed=0
 		print("breed")
-		breedSignal.emit()
+		breedSignal.emit(type)
 		
 func save():
 	var save_dict = {"filename" : get_scene_file_path(),

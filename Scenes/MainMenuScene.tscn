@@ -1,23 +1,86 @@
-[gd_scene format=3 uid="uid://x1ue12smfdtm"]
+[gd_scene load_steps=6 format=3 uid="uid://x1ue12smfdtm"]
+
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="1_bqtmd"]
+[ext_resource type="Script" path="res://Scenes/mainMenuController.gd" id="1_h132p"]
+[ext_resource type="Texture2D" uid="uid://d0vjyos8rxxlr" path="res://images/background.png" id="1_ttlmc"]
+[ext_resource type="Texture2D" uid="uid://c8ltwyxnvluci" path="res://Scenes/creature/shrimp1_s.png" id="3_e8go4"]
+[ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="4_f8vnq"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_h132p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(114.5, 62)
+scale = Vector2(275, 168)
+texture = ExtResource("1_ttlmc")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 167.0
-offset_top = 5.0
-offset_right = 974.0
-offset_bottom = 196.0
+offset_left = 204.0
+offset_top = 15.0
+offset_right = 929.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_bqtmd")
+theme_override_font_sizes/font_size = 96
+text = "Sea-Monkey"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 177.0
+offset_top = 155.0
+offset_right = 966.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
-text = "Tiny Creatures"
+text = "Simulator"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 696.0
-offset_top = 144.0
-offset_right = 1063.0
-offset_bottom = 601.0
+offset_left = 396.0
+offset_top = 292.0
+offset_right = 763.0
+offset_bottom = 627.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="NewButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(256, 40)
 layout_mode = 2
+theme = ExtResource("4_f8vnq")
+theme_override_fonts/font = ExtResource("1_bqtmd")
 text = "New"
+
+[node name="LoadButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+theme = ExtResource("4_f8vnq")
+theme_override_fonts/font = ExtResource("1_bqtmd")
+text = "Load"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+theme = ExtResource("4_f8vnq")
+theme_override_fonts/font = ExtResource("1_bqtmd")
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+theme = ExtResource("4_f8vnq")
+theme_override_fonts/font = ExtResource("1_bqtmd")
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+theme = ExtResource("4_f8vnq")
+theme_override_fonts/font = ExtResource("1_bqtmd")
+text = "Exit"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(200, 450)
+texture = ExtResource("3_e8go4")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(960, 450)
+texture = ExtResource("3_e8go4")

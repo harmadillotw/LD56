@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhmy4av7s72v3"]
+
+[ext_resource type="Texture2D" uid="uid://d0vjyos8rxxlr" path="res://images/background.png" id="1_c3dtd"]
+[ext_resource type="Script" path="res://Scenes/splashScreenController.gd" id="1_gmyen"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="2_wu1g0"]
+[ext_resource type="Texture2D" uid="uid://c8ltwyxnvluci" path="res://Scenes/creature/shrimp1_s.png" id="3_xvksh"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gmyen")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(548, 304)
+scale = Vector2(275, 168)
+texture = ExtResource("1_c3dtd")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 204.0
+offset_top = 15.0
+offset_right = 929.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wu1g0")
+theme_override_font_sizes/font_size = 96
+text = "Sea-Monkey"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 177.0
+offset_top = 155.0
+offset_right = 966.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Simulator"
+horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(200, 450)
+texture = ExtResource("3_xvksh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(960, 450)
+texture = ExtResource("3_xvksh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(580, 450)
+texture = ExtResource("3_xvksh")

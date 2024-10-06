@@ -45,14 +45,14 @@ visible = false
 position = Vector2(2, -1)
 shape = SubResource("RectangleShape2D_1y0sr")
 
-[node name="HealthLabel" type="Label" parent="."]
-visible = false
-offset_left = -20.0
-offset_top = -26.0
-offset_right = 20.0
-offset_bottom = -3.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_silww")
 autoplay = "default"
-frame_progress = 0.660122
+frame_progress = 0.513262
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 125.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 32

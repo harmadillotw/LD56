@@ -17,7 +17,7 @@ var salinityTestKit = 0
 
 
 var ph = 4.0
-var salinity = 5.0
+var salinity = 1.0
 var light = 10.0
 var ph_change = 0.01
 var salinity_change = 0.01
@@ -28,7 +28,7 @@ var creatureCount = 0
 
 @onready var magContainer: SubViewportContainer = $SubViewportContainer
 #@onready var phLevel: Label = $PHLevelLabel
-@onready var salLevel: Label = $SALLevelLabel
+#@onready var salLevel: Label = $SALLevelLabel
 @onready var cashLabel: Label = $MoneyLabel
 @onready var creatureNode2D: Node2D = $CreaturesNode2D
 @onready var pauseNode: Node2D = $PauseMenuNode
@@ -80,16 +80,16 @@ func _input(_event):
 			loadButton.visible = !loadButton.visible
 			
 func populateItems():
-	addItem(Global.ITEM_SET.RED_SHRIMP,10)
-	addItem(Global.ITEM_SET.BLUE_SHRIMP,2)
-	addItem(Global.ITEM_SET.GREEN_SHRIMP,3)
-	addItem(Global.ITEM_SET.PH_65_BUFFER,10)
-	addItem(Global.ITEM_SET.PH_72_BUFFER,10)
+	addItem(Global.ITEM_SET.RED_SHRIMP,3)
+	addItem(Global.ITEM_SET.BLUE_SHRIMP,0)
+	addItem(Global.ITEM_SET.GREEN_SHRIMP,0)
+	addItem(Global.ITEM_SET.PH_65_BUFFER,0)
+	addItem(Global.ITEM_SET.PH_72_BUFFER,0)
 	addItem(Global.ITEM_SET.PH_85_BUFFER,10)
-	addItem(Global.ITEM_SET.NATURAL_SALT, 10)
-	addItem(Global.ITEM_SET.DECHLORINATOR,10)
-	addItem(Global.ITEM_SET.PH_TEST_KIT,10)
-	addItem(Global.ITEM_SET.SALINITY_TEST_KIT, 10)
+	addItem(Global.ITEM_SET.NATURAL_SALT, 1)
+	addItem(Global.ITEM_SET.DECHLORINATOR,1)
+	addItem(Global.ITEM_SET.PH_TEST_KIT,5)
+	addItem(Global.ITEM_SET.SALINITY_TEST_KIT, 5)
 	pass
 func addItem(type, count):
 	var instance = itemContainerScene.instantiate()
@@ -103,11 +103,13 @@ func _on_use_item(type : Global.ITEM_SET):
 	match type:
 		Global.ITEM_SET.RED_SHRIMP:
 			for n in 10:
-				add_creature(1)
+				add_creature(1,Global.ITEM_SET.RED_SHRIMP)
 		Global.ITEM_SET.BLUE_SHRIMP:
-			pass
+			for n in 10:
+				add_creature(1,Global.ITEM_SET.BLUE_SHRIMP)
 		Global.ITEM_SET.GREEN_SHRIMP:
-			pass
+			for n in 10:
+				add_creature(1,Global.ITEM_SET.GREEN_SHRIMP)
 		Global.ITEM_SET.PH_65_BUFFER:
 			descreasePh()
 		Global.ITEM_SET.PH_72_BUFFER:
@@ -133,10 +135,10 @@ func do_salinity_test():
 	salLevelDisplay.play()
 	await salLevelDisplay.animation_finished
 	salLevelDisplay.get_node("Label").text = str(salinity)
-func _on_breed():
+func _on_breed(type):
 	print("do breed")
 	if creatureCount < Global.max_creature_count:
-		add_creature(0)
+		add_creature(0,type)
 func _on_die(creature):
 	var cindex = creatureArray.find(creature)
 	if cindex < creatureCount:
@@ -181,7 +183,7 @@ func _on_mag_button_pressed() -> void:
 	magContainer.visible = !magContainer.visible
 	
 
-func add_creature(cost) -> void:
+func add_creature(cost, type) -> void:
 	if cost > 0 && Global.cash <= 0:
 		return
 	var instance = creatureScene.instantiate()
@@ -192,6 +194,23 @@ func add_creature(cost) -> void:
 	instance.position = startLocation
 	instance.health = 90 + rng.randf_range(0.0,10.0)
 	instance.velocity = Vector2(0,0)
+	match type:
+		Global.ITEM_SET.RED_SHRIMP:
+			instance.minPh = 5.0
+			instance.maxPh = 9.0
+			instance.minSal = 0.0
+			instance.maxSal = 2.0
+		Global.ITEM_SET.BLUE_SHRIMP:
+			instance.minPh = 7.0
+			instance.maxPh = 10.0
+			instance.minSal = 0.0
+			instance.maxSal = 4.0
+		Global.ITEM_SET.GREEN_SHRIMP:
+			instance.minPh = 9.0
+			instance.maxPh = 12.0
+			instance.minSal = 3.0
+			instance.maxSal = 8.0
+	instance.type = type
 	instance.breedSignal.connect(_on_breed)
 	instance.dieSignal.connect(_on_die)
 	creatureArray.append(instance)

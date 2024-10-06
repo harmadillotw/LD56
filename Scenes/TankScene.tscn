@@ -130,22 +130,6 @@ offset_bottom = 368.0
 theme_override_font_sizes/font_size = 32
 text = "Cash: "
 
-[node name="PHLevelLabel" type="Label" parent="."]
-offset_left = 319.0
-offset_top = 455.0
-offset_right = 372.0
-offset_bottom = 500.0
-theme_override_font_sizes/font_size = 32
-text = "PH:"
-
-[node name="SALLevelLabel" type="Label" parent="."]
-offset_left = 351.0
-offset_top = 372.0
-offset_right = 473.0
-offset_bottom = 417.0
-theme_override_font_sizes/font_size = 32
-text = "Salinity:"
-
 [node name="Shop" parent="." instance=ExtResource("5_1ocys")]
 visible = false
 
