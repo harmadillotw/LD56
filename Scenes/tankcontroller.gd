@@ -33,12 +33,14 @@ var creatureCount = 0
 @onready var creatureNode2D: Node2D = $CreaturesNode2D
 @onready var pauseNode: Node2D = $PauseMenuNode
 @onready var shopNode: Node2D = $Shop
-@onready var saveButton: Button = $PauseMenuNode/SaveButton
-@onready var loadButton: Button = $PauseMenuNode/LoadButton
+@onready var saveButton: Button = $PauseMenuNode/Panel/VBoxContainer/SaveButton
+@onready var loadButton: Button = $PauseMenuNode/Panel/VBoxContainer/LoadButton
+@onready var exitButton: Button = $PauseMenuNode/Panel/VBoxContainer/ExitButton
 @onready var itemsContainer: HBoxContainer = $ItemsHBoxContainer
 @onready var phLevelDisplay: AnimatedSprite2D = $PHAnimatedSprite2D
 @onready var salLevelDisplay: AnimatedSprite2D = $SalAnimatedSprite2D
 
+var runTestWav = preload("res://Audio/runTest.wav")	
 
 var creatureScene = preload("res://Scenes/creature/Creature.tscn")
 var itemContainerScene = preload("res://Scenes/itemContainer.tscn")
@@ -47,13 +49,17 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	Global.cash = 300
 	magContainer.visible = false
-	saveButton.visible = false
-	loadButton.visible = false
+	#saveButton.visible = false
+	pauseNode.visible = false
+	#loadButton.visible = false
 	shopNode.visible = false
 	pauseNode.unpauseSignal.connect(_on_unpause)
 	shopNode.exitShopSignal.connect(_on_exit_shop)
 	shopNode.buyItemSignal.connect(_on_buy_shop_item)
 	populateItems()
+	if  Global.loadGame:
+		load_game()
+	
 		#instance.position = startLocation
 		#instance.global_position = startLocation
 
@@ -61,6 +67,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Maginfy"):
+		MasterAudioStreamPlayer.play_fx_click2()
 		magContainer.visible = !magContainer.visible
 	#if Input.is_action_just_pressed("Pause"):
 	#	if !get_tree().paused:
@@ -69,15 +76,16 @@ func _process(delta: float) -> void:
 	#		loadButton.visible = !loadButton.visible
 	#phLevel.text = "PH: " + str(ph)
 	#salLevel.text = "Salinity: " + str(salinity)
-	cashLabel.text = "Cash: " + str(Global.cash)
+	cashLabel.text = "Cash: $" + str(Global.cash)
 
 func _input(_event): 
 	if Input.is_action_just_pressed("Pause"):
 		get_viewport().set_input_as_handled()
 		if !get_tree().paused:
 			get_tree().paused = !get_tree().paused
-			saveButton.visible = !saveButton.visible
-			loadButton.visible = !loadButton.visible
+			#saveButton.visible = !saveButton.visible
+			#loadButton.visible = !loadButton.visible
+			pauseNode.visible = !pauseNode.visible
 			
 func populateItems():
 	addItem(Global.ITEM_SET.RED_SHRIMP,3)
@@ -127,6 +135,7 @@ func _on_use_item(type : Global.ITEM_SET):
 			
 func do_ph_test():
 	#phLevel.text = "PH: " + str(ph)
+	MasterAudioStreamPlayer.play_fx(runTestWav)
 	phLevelDisplay.play()
 	await phLevelDisplay.animation_finished
 	phLevelDisplay.get_node("Label").text = str(ph)
@@ -146,8 +155,9 @@ func _on_die(creature):
 		toDelete.queue_free()
 		creatureCount -= 1
 func _on_unpause():
-	saveButton.visible = !saveButton.visible
-	loadButton.visible = !loadButton.visible
+	#saveButton.visible = !saveButton.visible
+	#loadButton.visible = !loadButton.visible
+	pauseNode.visible = !pauseNode.visible
 func _on_exit_shop():
 	if get_tree().paused:
 		get_tree().paused = !get_tree().paused
@@ -179,7 +189,7 @@ func decreaseSalt() -> void:
 
 
 func _on_mag_button_pressed() -> void:
-	
+	MasterAudioStreamPlayer.play_fx_click2()
 	magContainer.visible = !magContainer.visible
 	
 
@@ -237,20 +247,24 @@ func sell_creature(repeat: bool) -> void:
 			print("Creature(2) is null")	
 	#creature.erase(cpos)
 func _on_sell_10_button_2_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
 	for n in 10:
 		sell_creature(true)
 
 
 func _on_sell_5_button_2_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
 	for n in 5:
 		sell_creature(true)
 
 
 func _on_sell_button_2_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
 	sell_creature(true)
 
 
 func _on_save_button_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
 	save_game()
 	
 func save_game():
@@ -296,6 +310,7 @@ func save_game():
 		save_file.store_line(json_string)
 		
 func _on_load_button_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
 	load_game()
 	
 func load_game():
@@ -369,6 +384,7 @@ func load_game():
 			
 
 func _on_shop_button_pressed() -> void:
+	MasterAudioStreamPlayer.play_fx_click2()
 	if !get_tree().paused:
 		get_tree().paused = !get_tree().paused
 	shopNode.visible = true

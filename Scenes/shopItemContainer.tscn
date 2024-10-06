@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8e5blqd6xqwr"]
+[gd_scene load_steps=4 format=3 uid="uid://b8e5blqd6xqwr"]
 
 [ext_resource type="Script" path="res://Scenes/shopItemController.gd" id="1_n2pdj"]
 [ext_resource type="Texture2D" uid="uid://b387s0mx7utg1" path="res://images/bottle_ph65.png" id="2_k8lx0"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="3_hh08s"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(150, 150)
@@ -20,6 +21,7 @@ offset_left = 4.0
 offset_top = 15.0
 offset_right = 99.0
 offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="CountLabel" type="Label" parent="."]
 layout_mode = 0
@@ -27,15 +29,8 @@ offset_left = 104.0
 offset_top = 123.0
 offset_right = 145.0
 offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 2
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 116.0
-offset_right = 99.0
-offset_bottom = 147.0
-text = "Buy"
 
 [node name="PriceLabel" type="Label" parent="."]
 layout_mode = 0
@@ -43,5 +38,16 @@ offset_left = 7.0
 offset_top = 122.0
 offset_right = 47.0
 offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 116.0
+offset_right = 99.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("3_hh08s")
+text = "Buy"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

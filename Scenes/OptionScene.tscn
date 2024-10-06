@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxe87tkyiv7p7"]
+
+[ext_resource type="Script" path="res://Scripts/optionsController.gd" id="1_6l5po"]
+[ext_resource type="Texture2D" uid="uid://d0vjyos8rxxlr" path="res://images/background.png" id="2_iqyhw"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="3_frh2j"]
+[ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="4_k0ooa"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_y2mqf"]
+color = Color(0.87451, 0.407843, 0.0941176, 1)
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jvok6"]
+color = Color(0.87451, 0.407843, 0.0941176, 1)
+thickness = 10
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6l5po")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(114.5, 62)
+scale = Vector2(275, 168)
+texture = ExtResource("2_iqyhw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 204.0
+offset_top = 15.0
+offset_right = 929.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_frh2j")
+theme_override_font_sizes/font_size = 96
+text = "Options"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 441.0
+offset_top = 265.0
+offset_right = 697.0
+offset_bottom = 567.0
+theme_override_constants/separation = 22
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("3_frh2j")
+theme_override_font_sizes/font_size = 32
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicHSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_y2mqf")
+min_value = -60.0
+max_value = 0.0
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("3_frh2j")
+theme_override_font_sizes/font_size = 32
+text = "FX Volume"
+horizontal_alignment = 1
+
+[node name="FXHSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_jvok6")
+min_value = -60.0
+max_value = 0.0
+
+[node name="ReturnButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 40)
+layout_mode = 2
+theme = ExtResource("4_k0ooa")
+theme_override_fonts/font = ExtResource("3_frh2j")
+text = "Return"
+
+[connection signal="value_changed" from="VBoxContainer/MusicHSlider" to="." method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/FXHSlider" to="." method="_on_fxh_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

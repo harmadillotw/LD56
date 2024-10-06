@@ -57,17 +57,18 @@ func setText():
 			textLabel.text = labelText
 			$Sprite2D.texture = load("res://images/declorinator.png")
 		Global.ITEM_SET.PH_TEST_KIT:
-			labelText = "pH Test Kit"
+			#labelText = "pH Test Kit"
 			textLabel.text = labelText
 			$Sprite2D.texture = load("res://images/ph_test_kit.png")
 		Global.ITEM_SET.SALINITY_TEST_KIT:
-			labelText = "Salinity Test Kit"
+			#labelText = "Salinity Test Kit"
 			textLabel.text = labelText
 			$Sprite2D.texture = load("res://images/salinity_test_kit.png")
 
 
 func _on_button_pressed() -> void:	
 	if (Global.cash - price) > 0:
+		MasterAudioStreamPlayer.play_fx_click()
 		Global.cash -= price
 		count -= 1
 		Global.items_dict[type].count += 1

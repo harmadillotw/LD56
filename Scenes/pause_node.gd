@@ -2,9 +2,9 @@ extends Node2D
 
 signal unpauseSignal
 
-@onready var saveButton: Button = $SaveButton
-@onready var loadButton: Button = $LoadButton
-
+@onready var saveButton: Button = $Panel/VBoxContainer/SaveButton
+@onready var loadButton: Button = $Panel/VBoxContainer/LoadButton
+@onready var pauseNode: Node2D = $PauseMenuNode
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -26,5 +26,6 @@ func _input(_event):
 		get_viewport().set_input_as_handled()
 		if get_tree().paused:
 			get_tree().paused = !get_tree().paused
-			saveButton.visible = !saveButton.visible
-			loadButton.visible = !loadButton.visible
+			#saveButton.visible = !saveButton.visible
+			#loadButton.visible = !loadButton.visible
+			visible = !visible

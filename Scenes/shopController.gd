@@ -38,7 +38,7 @@ func addItem(type, parentNode, price):
 	parentNode.add_child(instance)
 
 func _on_buy_item(type : Global.ITEM_SET):
-	cashLabel.text = "Cash:" + str(Global.cash)
+	cashLabel.text = "Cash: $" + str(Global.cash)
 	buyItemSignal.emit(type)
 func _on_button_pressed() -> void:
 		

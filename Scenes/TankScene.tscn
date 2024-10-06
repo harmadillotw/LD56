@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ck2xxvtblv8yk"]
+[gd_scene load_steps=14 format=3 uid="uid://ck2xxvtblv8yk"]
 
 [ext_resource type="Script" path="res://Scenes/tankcontroller.gd" id="1_6pk36"]
 [ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_4tpb6"]
@@ -6,14 +6,19 @@
 [ext_resource type="Script" path="res://Scenes/mag_viewport_container.gd" id="3_mxwu8"]
 [ext_resource type="PackedScene" uid="uid://mxsqc8erv4c" path="res://Scenes/salTestertscn.tscn" id="4_no7xf"]
 [ext_resource type="PackedScene" uid="uid://dy0ri8tcu3cbl" path="res://Scenes/ShopScene.tscn" id="5_1ocys"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="5_e6bnp"]
 [ext_resource type="PackedScene" uid="uid://br1o74gcmtdo0" path="res://Scenes/phTester.tscn" id="5_l8gks"]
 [ext_resource type="Script" path="res://Scenes/pause_node.gd" id="5_oe1va"]
+[ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="10_hhhnw"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gpk8c"]
 load_path = "res://.godot/imported/aquarium.png-024b0fb3f1e0967031e3752280c26d5d.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rw3ga"]
 load_path = "res://.godot/imported/mag.png-d180601db4280cb0c700c5f661948964.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xly7"]
+bg_color = Color(0.101961, 1, 1, 1)
 
 [node name="Tank" type="Node2D" groups=["Persist_Main"]]
 script = ExtResource("1_6pk36")
@@ -44,8 +49,10 @@ offset_left = 20.0
 offset_top = 588.0
 offset_right = 94.0
 offset_bottom = 641.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
-text = "Mag"
+text = "Magnify"
 
 [node name="PHAnimatedSprite2D" parent="." instance=ExtResource("5_l8gks")]
 position = Vector2(60, 229)
@@ -57,45 +64,55 @@ scale = Vector2(0.5, 0.5)
 
 [node name="ShopButton" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 25.0
-offset_top = 329.0
-offset_right = 110.0
-offset_bottom = 382.0
+offset_left = 14.0
+offset_top = 341.0
+offset_right = 116.0
+offset_bottom = 401.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "Shop"
 
 [node name="SellLabel3" type="Label" parent="."]
-offset_left = 28.0
-offset_top = 405.0
-offset_right = 115.0
-offset_bottom = 451.0
+offset_left = 39.0
+offset_top = 421.0
+offset_right = 129.0
+offset_bottom = 473.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
-text = "Sell"
+text = "Sell Shrimp:"
 
 [node name="Sell10Button2" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 97.0
-offset_top = 404.0
-offset_right = 147.0
-offset_bottom = 457.0
+offset_left = 37.0
+offset_top = 487.0
+offset_right = 89.0
+offset_bottom = 547.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "10"
 
 [node name="Sell5Button2" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 165.0
-offset_top = 408.0
-offset_right = 215.0
-offset_bottom = 461.0
+offset_left = 110.0
+offset_top = 486.0
+offset_right = 160.0
+offset_bottom = 546.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "5"
 
 [node name="SellButton2" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 233.0
-offset_top = 409.0
-offset_right = 283.0
-offset_bottom = 462.0
+offset_left = 178.0
+offset_top = 486.0
+offset_right = 228.0
+offset_bottom = 546.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "1"
 
@@ -123,10 +140,10 @@ script = ExtResource("3_mu5ub")
 zoom = Vector2(10, 10)
 
 [node name="MoneyLabel" type="Label" parent="."]
-offset_left = 188.0
-offset_top = 323.0
-offset_right = 294.0
-offset_bottom = 368.0
+offset_left = 132.0
+offset_top = 348.0
+offset_right = 238.0
+offset_bottom = 393.0
 theme_override_font_sizes/font_size = 32
 text = "Cash: "
 
@@ -137,28 +154,59 @@ visible = false
 process_mode = 2
 script = ExtResource("5_oe1va")
 
-[node name="LoadButton" type="Button" parent="PauseMenuNode"]
+[node name="Panel" type="Panel" parent="PauseMenuNode"]
+offset_left = 264.0
+offset_top = 140.0
+offset_right = 991.0
+offset_bottom = 571.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2xly7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenuNode/Panel"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 118.0
+offset_right = 468.0
+offset_bottom = 315.0
+theme_override_constants/separation = 16
+
+[node name="LoadButton" type="Button" parent="PauseMenuNode/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 344.0
-offset_top = 585.0
-offset_right = 427.0
-offset_bottom = 638.0
+layout_mode = 2
+theme = ExtResource("10_hhhnw")
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "Load"
 
-[node name="SaveButton" type="Button" parent="PauseMenuNode"]
+[node name="SaveButton" type="Button" parent="PauseMenuNode/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
-offset_left = 254.0
-offset_top = 583.0
-offset_right = 334.0
-offset_bottom = 636.0
+layout_mode = 2
+theme = ExtResource("10_hhhnw")
+theme_override_fonts/font = ExtResource("5_e6bnp")
 theme_override_font_sizes/font_size = 32
 text = "Save"
+
+[node name="ExitButton" type="Button" parent="PauseMenuNode/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("10_hhhnw")
+theme_override_fonts/font = ExtResource("5_e6bnp")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 886.0
+offset_top = 574.0
+offset_right = 1129.0
+offset_bottom = 623.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TAB - Pause menu
+Right Click/M - Magnify"
 
 [connection signal="pressed" from="MAGButton" to="." method="_on_mag_button_pressed"]
 [connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Sell10Button2" to="." method="_on_sell_10_button_2_pressed"]
 [connection signal="pressed" from="Sell5Button2" to="." method="_on_sell_5_button_2_pressed"]
 [connection signal="pressed" from="SellButton2" to="." method="_on_sell_button_2_pressed"]
-[connection signal="pressed" from="PauseMenuNode/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="PauseMenuNode/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PauseMenuNode/Panel/VBoxContainer/ExitButton" to="." method="_on_save_button_pressed"]

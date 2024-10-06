@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy0ri8tcu3cbl"]
+[gd_scene load_steps=8 format=3 uid="uid://dy0ri8tcu3cbl"]
 
 [ext_resource type="Script" path="res://Scenes/shopController.gd" id="1_ufioa"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="2_38b2q"]
+[ext_resource type="Texture2D" uid="uid://d0vjyos8rxxlr" path="res://images/background.png" id="2_wn73p"]
+[ext_resource type="Theme" uid="uid://yigivod2gh3k" path="res://Fonts/button_theme.tres" id="3_lxefp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2wry"]
+bg_color = Color(0.101961, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_bxqgo"]
 
@@ -18,53 +24,84 @@ offset_left = 14.0
 offset_top = 23.0
 offset_right = 1120.0
 offset_bottom = 626.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t2wry")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Panel"]
+position = Vector2(-14, -23)
+scale = Vector2(275, 168)
+texture = ExtResource("2_wn73p")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]
+visible = false
 position = Vector2(554.25, 302.75)
 scale = Vector2(1109.5, 606.5)
 texture = SubResource("GradientTexture2D_tv1js")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 18.0
-offset_right = 1076.0
-offset_bottom = 115.0
-theme_override_font_sizes/font_size = 64
-text = "Shop"
+offset_left = 20.0
+offset_top = -32.0
+offset_right = 1078.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0.87451, 0.517647, 0.141176, 1)
+theme_override_fonts/font = ExtResource("2_38b2q")
+theme_override_font_sizes/font_size = 56
+text = "Shrimp Tank Shack"
 horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Panel/Label"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 533.0
-offset_top = 535.0
-offset_right = 570.0
-offset_bottom = 566.0
-theme_override_font_sizes/font_size = 32
-text = "Exit"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 48.0
-offset_top = 133.0
+offset_top = 60.0
 offset_right = 1042.0
-offset_bottom = 571.0
+offset_bottom = 517.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.517647, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("2_38b2q")
+text = "Aquatics"
 
 [node name="AquaticsHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
+[node name="Label2" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.517647, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("2_38b2q")
+text = "Water Conditioning"
+
 [node name="WaterConditioningHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.517647, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("2_38b2q")
+text = "Testing"
 
 [node name="TestsHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 553.0
+offset_top = 503.0
+offset_right = 653.0
+offset_bottom = 603.0
+theme = ExtResource("3_lxefp")
+theme_override_fonts/font = ExtResource("2_38b2q")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
 [node name="CashLabel" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 39.0
-offset_right = 1010.0
-offset_bottom = 84.0
+offset_left = 967.0
+offset_top = -3.0
+offset_right = 1121.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 
-[connection signal="pressed" from="Panel/Label/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

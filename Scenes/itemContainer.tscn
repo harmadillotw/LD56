@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bff8c7mn8a5xy"]
+[gd_scene load_steps=4 format=3 uid="uid://bff8c7mn8a5xy"]
 
 [ext_resource type="Script" path="res://itemController.gd" id="1_iaavo"]
 [ext_resource type="Texture2D" uid="uid://b387s0mx7utg1" path="res://images/bottle_ph65.png" id="2_7htbe"]
+[ext_resource type="FontFile" uid="uid://bhdc384sh7yxl" path="res://Fonts/SuperFunky-lgmWw.ttf" id="3_wnrhb"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(100, 120)
@@ -23,18 +24,19 @@ offset_bottom = 38.0
 
 [node name="CountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 63.0
-offset_right = 105.0
-offset_bottom = 86.0
-horizontal_alignment = 2
+offset_left = 7.0
+offset_top = 92.0
+offset_right = 45.0
+offset_bottom = 115.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 28.0
+offset_left = 47.0
 offset_top = 86.0
-offset_right = 77.0
+offset_right = 96.0
 offset_bottom = 117.0
+theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
+theme_override_fonts/font = ExtResource("3_wnrhb")
 text = "Use"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

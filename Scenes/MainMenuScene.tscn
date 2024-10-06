@@ -23,7 +23,7 @@ theme_override_colors/font_color = Color(0.87451, 0.407843, 0.0941176, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_bqtmd")
 theme_override_font_sizes/font_size = 96
-text = "Sea-Monkey"
+text = "Shrimp Tank"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
@@ -54,7 +54,7 @@ custom_minimum_size = Vector2(256, 40)
 layout_mode = 2
 theme = ExtResource("4_f8vnq")
 theme_override_fonts/font = ExtResource("1_bqtmd")
-text = "Load"
+text = "Continue"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(256, 40)
@@ -84,3 +84,9 @@ texture = ExtResource("3_e8go4")
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(960, 450)
 texture = ExtResource("3_e8go4")
+
+[connection signal="pressed" from="VBoxContainer/NewButton" to="." method="_on_new_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

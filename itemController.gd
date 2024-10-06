@@ -67,7 +67,7 @@ func setText():
 	
 func _on_button_pressed() -> void:
 	count -= 1
-	
+	MasterAudioStreamPlayer.play_fx_click2()
 	useItemSignal.emit(type)
 	
 	
