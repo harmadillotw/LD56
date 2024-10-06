@@ -14,7 +14,7 @@ var declorinator = 0
 var pHTestKit = 0
 var salinityTestKit = 0
 
-var items_dict = {}
+
 
 var ph = 4.0
 var salinity = 5.0
@@ -23,7 +23,7 @@ var ph_change = 0.01
 var salinity_change = 0.01
 var creatureArray = []
 var creatureCount = 0
-var cash = 100
+
 
 
 @onready var magContainer: SubViewportContainer = $SubViewportContainer
@@ -43,6 +43,7 @@ var itemContainerScene = preload("res://Scenes/itemContainer.tscn")
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.cash = 300
 	magContainer.visible = false
 	saveButton.visible = false
 	loadButton.visible = false
@@ -66,7 +67,7 @@ func _process(delta: float) -> void:
 	#		loadButton.visible = !loadButton.visible
 	#phLevel.text = "PH: " + str(ph)
 	#salLevel.text = "Salinity: " + str(salinity)
-	cashLabel.text = "Cash: " + str(cash)
+	cashLabel.text = "Cash: " + str(Global.cash)
 
 func _input(_event): 
 	if Input.is_action_just_pressed("Pause"):
@@ -142,7 +143,8 @@ func _on_exit_shop():
 		get_tree().paused = !get_tree().paused
 	shopNode.visible = false
 func _on_buy_shop_item(type : Global.ITEM_SET):
-	Global.items_dict[type].count += 1
+	pass
+	#Global.items_dict[type].count += 1
 	
 func increasePh() -> void:
 	ph += 0.2
@@ -172,7 +174,7 @@ func _on_mag_button_pressed() -> void:
 	
 
 func add_creature(cost) -> void:
-	if cost > 0 && cash <= 0:
+	if cost > 0 && Global.cash <= 0:
 		return
 	var instance = creatureScene.instantiate()
 	var startx = rng.randf_range(400.0,1000.0)
@@ -186,7 +188,7 @@ func add_creature(cost) -> void:
 	instance.dieSignal.connect(_on_die)
 	creatureArray.append(instance)
 	creatureCount += 1
-	cash -= cost
+	Global.cash -= cost
 	print("Creature Count ", creatureCount)
 	creatureNode2D.add_child(instance)
 	
@@ -197,7 +199,7 @@ func sell_creature(repeat: bool) -> void:
 		#var cNode = creatureDit.get(cpos)
 	if cNode !=null:
 		creatureCount -= 1
-		cash += 1
+		Global.cash += 1
 		print("Creature Count ", creatureCount)
 		cNode.queue_free()
 	else:
@@ -246,8 +248,26 @@ func save_game():
 
 		# Store the save dictionary as a new line in the save file.
 		save_file.store_line(json_string)
+	var save_main_nodes = get_tree().get_nodes_in_group("Persist_Main")
+	for node in save_main_nodes:
+		if node.scene_file_path.is_empty():
+			print("persistent node '%s' is not an instanced scene, skipped" % node.name)
+			continue
 
+		# Check the node has a save function.
+		if !node.has_method("save"):
+			print("persistent node '%s' is missing a save() function, skipped" % node.name)
+			continue
 
+		# Call the node's save function.
+		var node_data = node.call("save")
+
+		# JSON provides a static method to serialized JSON string.
+		var json_string = JSON.stringify(node_data)
+
+		# Store the save dictionary as a new line in the save file.
+		save_file.store_line(json_string)
+		
 func _on_load_button_pressed() -> void:
 	load_game()
 	
@@ -284,29 +304,66 @@ func load_game():
 		# Get the data from the JSON object.
 		var node_data = json.data
 
-		# Firstly, we need to create the object and add it to the tree and set its position.
-		var new_object = load(node_data["filename"]).instantiate()
-		get_node(node_data["parent"]).add_child(new_object)
-		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
-		
-		# appliy needed variable
-		new_object.health = node_data["health"]
-		new_object.speed = node_data["speed"]
-		new_object.minPh = node_data["minPh"]
-		new_object.maxPh = node_data["maxPh"]
-		new_object.minSal = node_data["minSal"]
-		new_object.maxSal = node_data["maxSal"]
-		# reconnect signals
-		new_object.breedSignal.connect(_on_breed)
-		new_object.dieSignal.connect(_on_die)
-		# Now we set the remaining variables.
-		for i in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
-				continue
-			new_object.set(i, node_data[i])
-
+		if node_data.has("health"):
+			# Firstly, we need to create the object and add it to the tree and set its position.
+			var new_object = load(node_data["filename"]).instantiate()
+			get_node(node_data["parent"]).add_child(new_object)
+			new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
+			
+			# appliy needed variable
+			new_object.health = node_data["health"]
+			new_object.speed = node_data["speed"]
+			new_object.minPh = node_data["minPh"]
+			new_object.maxPh = node_data["maxPh"]
+			new_object.minSal = node_data["minSal"]
+			new_object.maxSal = node_data["maxSal"]
+			# reconnect signals
+			new_object.breedSignal.connect(_on_breed)
+			new_object.dieSignal.connect(_on_die)
+			# Now we set the remaining variables.
+			for i in node_data.keys():
+				if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+					continue
+				new_object.set(i, node_data[i])
+		else:	
+			Global.cash = node_data["cash"]
+			Global.items_dict[Global.ITEM_SET.RED_SHRIMP].count= node_data["items_red"]
+			Global.items_dict[Global.ITEM_SET.GREEN_SHRIMP].count = node_data["items_green"]
+			Global.items_dict[Global.ITEM_SET.BLUE_SHRIMP].count = node_data["items_blue"]
+			Global.items_dict[Global.ITEM_SET.PH_65_BUFFER].count = node_data["items_65"]
+			Global.items_dict[Global.ITEM_SET.PH_72_BUFFER].count = node_data["items_72"]
+			Global.items_dict[Global.ITEM_SET.PH_85_BUFFER].count = node_data["items_85"]
+			Global.items_dict[Global.ITEM_SET.NATURAL_SALT].count = node_data["items_salt"]
+			Global.items_dict[Global.ITEM_SET.DECHLORINATOR].count = node_data["items_water"]
+			Global.items_dict[Global.ITEM_SET.PH_TEST_KIT].count = node_data["items_ph_test"]
+			Global.items_dict[Global.ITEM_SET.SALINITY_TEST_KIT].count = node_data["items_sal_test"]
+			ph = node_data["ph"]
+			salinity = node_data["salinity"]
+			
 
 func _on_shop_button_pressed() -> void:
 	if !get_tree().paused:
 		get_tree().paused = !get_tree().paused
 	shopNode.visible = true
+	
+func save():
+	var save_dict = {"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x, # Vector2 is not supported by JSON
+		"pos_y" : position.y,
+		"items_red" : Global.items_dict[Global.ITEM_SET.RED_SHRIMP].count,
+		"items_green" : Global.items_dict[Global.ITEM_SET.GREEN_SHRIMP].count,
+		"items_blue" : Global.items_dict[Global.ITEM_SET.BLUE_SHRIMP].count,
+		"items_65" : Global.items_dict[Global.ITEM_SET.PH_65_BUFFER].count,
+		"items_72" : Global.items_dict[Global.ITEM_SET.PH_72_BUFFER].count,
+		"items_85" : Global.items_dict[Global.ITEM_SET.PH_85_BUFFER].count,
+		"items_salt" : Global.items_dict[Global.ITEM_SET.NATURAL_SALT].count,
+		"items_water" : Global.items_dict[Global.ITEM_SET.DECHLORINATOR].count,
+		"items_ph_test" : Global.items_dict[Global.ITEM_SET.PH_TEST_KIT].count,
+		"items_sal_test" : Global.items_dict[Global.ITEM_SET.SALINITY_TEST_KIT].count,
+		"ph" : ph,
+		"salinity" : salinity,
+		"cash"	: Global.cash,
+		
+		}
+	return save_dict

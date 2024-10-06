@@ -5,15 +5,17 @@ signal buyItemButtonSignal
 
 @export var type : Global.ITEM_SET
 @export var count : int
+@export var price : int
 @export var labelText : String
 
 @onready var textLabel: Label = $Label
 @onready var countLabel: Label = $CountLabel
+@onready var priceLabel: Label = $PriceLabel
 @onready var buyButton: Button = $Button
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setText()
-	
+	priceLabel.text = "$" + str(price)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,7 +56,9 @@ func setText():
 			textLabel.text = labelText
 
 
-func _on_button_pressed() -> void:
-	count -= 1
-	
-	buyItemButtonSignal.emit(type)
+func _on_button_pressed() -> void:	
+	if (Global.cash - price) > 0:
+		Global.cash -= price
+		count -= 1
+		Global.items_dict[type].count += 1
+	#buyItemButtonSignal.emit(type)

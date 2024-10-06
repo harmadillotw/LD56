@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dy0ri8tcu3cbl" path="res://Scenes/ShopScene.tscn" id="5_1ocys"]
 [ext_resource type="Script" path="res://Scenes/pause_node.gd" id="5_oe1va"]
 
-[node name="Tank" type="Node2D"]
+[node name="Tank" type="Node2D" groups=["Persist_Main"]]
 script = ExtResource("1_6pk36")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

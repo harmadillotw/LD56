@@ -59,4 +59,12 @@ layout_mode = 2
 [node name="TestsHB" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
+[node name="CashLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 39.0
+offset_right = 1010.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 32
+
 [connection signal="pressed" from="Panel/Label/Button" to="." method="_on_button_pressed"]
