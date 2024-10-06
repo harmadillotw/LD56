@@ -12,8 +12,8 @@ func _process(delta: float) -> void:
 	$SubViewport/Camera2D.global_position = pos
 	pos.y -= 130
 	pos.x -= 130
-	if (pos.x < 200):
-		pos.x = 200
-	if (pos.y < 50):
-		pos.y = 50
+	if (pos.x < 300):
+		pos.x = 300
+	if (pos.y < 100):
+		pos.y = 100
 	global_position = pos

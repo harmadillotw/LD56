@@ -16,7 +16,7 @@ var localAlpa = 1.0
 
 var breedTimer = 300
 var HLDiv = 5.0
-@onready var color_sprite: Sprite2D = $Sprite2D
+@onready var color_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var healthLabel: Label = $HealthLabel
 var tank : Node2D
 var rng = RandomNumberGenerator.new()

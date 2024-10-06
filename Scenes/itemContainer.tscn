@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://bff8c7mn8a5xy"]
 
 [ext_resource type="Script" path="res://itemController.gd" id="1_iaavo"]
-[ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_awdil"]
+[ext_resource type="Texture2D" uid="uid://b387s0mx7utg1" path="res://images/bottle_ph65.png" id="2_7htbe"]
 
 [node name="Panel" type="Panel"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(100, 120)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_iaavo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(50, 35)
-scale = Vector2(0.53125, 0.484375)
-texture = ExtResource("2_awdil")
+position = Vector2(50.9775, 45.7949)
+scale = Vector2(0.322374, 0.242558)
+texture = ExtResource("2_7htbe")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -23,18 +23,18 @@ offset_bottom = 38.0
 
 [node name="CountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 44.0
-offset_right = 99.0
-offset_bottom = 67.0
+offset_left = 49.0
+offset_top = 63.0
+offset_right = 105.0
+offset_bottom = 86.0
 horizontal_alignment = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 70.0
-offset_right = 74.0
-offset_bottom = 93.0
+offset_left = 28.0
+offset_top = 86.0
+offset_right = 77.0
+offset_bottom = 117.0
 text = "Use"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

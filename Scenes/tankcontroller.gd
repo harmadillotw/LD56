@@ -27,7 +27,7 @@ var creatureCount = 0
 
 
 @onready var magContainer: SubViewportContainer = $SubViewportContainer
-@onready var phLevel: Label = $PHLevelLabel
+#@onready var phLevel: Label = $PHLevelLabel
 @onready var salLevel: Label = $SALLevelLabel
 @onready var cashLabel: Label = $MoneyLabel
 @onready var creatureNode2D: Node2D = $CreaturesNode2D
@@ -36,6 +36,8 @@ var creatureCount = 0
 @onready var saveButton: Button = $PauseMenuNode/SaveButton
 @onready var loadButton: Button = $PauseMenuNode/LoadButton
 @onready var itemsContainer: HBoxContainer = $ItemsHBoxContainer
+@onready var phLevelDisplay: AnimatedSprite2D = $PHAnimatedSprite2D
+@onready var salLevelDisplay: AnimatedSprite2D = $SalAnimatedSprite2D
 
 
 var creatureScene = preload("res://Scenes/creature/Creature.tscn")
@@ -78,7 +80,7 @@ func _input(_event):
 			loadButton.visible = !loadButton.visible
 			
 func populateItems():
-	addItem(Global.ITEM_SET.RED_SHRIMP,1)
+	addItem(Global.ITEM_SET.RED_SHRIMP,10)
 	addItem(Global.ITEM_SET.BLUE_SHRIMP,2)
 	addItem(Global.ITEM_SET.GREEN_SHRIMP,3)
 	addItem(Global.ITEM_SET.PH_65_BUFFER,10)
@@ -122,9 +124,15 @@ func _on_use_item(type : Global.ITEM_SET):
 			do_salinity_test()
 			
 func do_ph_test():
-	phLevel.text = "PH: " + str(ph)
+	#phLevel.text = "PH: " + str(ph)
+	phLevelDisplay.play()
+	await phLevelDisplay.animation_finished
+	phLevelDisplay.get_node("Label").text = str(ph)
 func do_salinity_test():
-	salLevel.text = "Salinity: " + str(salinity)
+	#salLevel.text = "Salinity: " + str(salinity)
+	salLevelDisplay.play()
+	await salLevelDisplay.animation_finished
+	salLevelDisplay.get_node("Label").text = str(salinity)
 func _on_breed():
 	print("do breed")
 	if creatureCount < Global.max_creature_count:
@@ -177,8 +185,8 @@ func add_creature(cost) -> void:
 	if cost > 0 && Global.cash <= 0:
 		return
 	var instance = creatureScene.instantiate()
-	var startx = rng.randf_range(400.0,1000.0)
-	var starty = rng.randf_range(150.0,500.0)
+	var startx = rng.randf_range(400.0,1080.0)
+	var starty = rng.randf_range(250.0,500.0)
 	var startLocation = Vector2(startx,starty)
 	#var startLocation = Vector2(400,150)
 	instance.position = startLocation

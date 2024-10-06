@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8e5blqd6xqwr"]
 
 [ext_resource type="Script" path="res://Scenes/shopItemController.gd" id="1_n2pdj"]
-[ext_resource type="Texture2D" uid="uid://cxisfspy22mqb" path="res://icon.svg" id="2_kgksj"]
+[ext_resource type="Texture2D" uid="uid://b387s0mx7utg1" path="res://images/bottle_ph65.png" id="2_k8lx0"]
 
 [node name="Panel" type="Panel"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(150, 150)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_n2pdj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(50, 35)
-scale = Vector2(0.53125, 0.484375)
-texture = ExtResource("2_kgksj")
+position = Vector2(74, 56.767)
+scale = Vector2(0.372956, 0.323178)
+texture = ExtResource("2_k8lx0")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -23,25 +23,25 @@ offset_bottom = 38.0
 
 [node name="CountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 44.0
-offset_right = 99.0
-offset_bottom = 67.0
+offset_left = 104.0
+offset_top = 123.0
+offset_right = 145.0
+offset_bottom = 146.0
 horizontal_alignment = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 70.0
-offset_right = 74.0
-offset_bottom = 93.0
+offset_left = 50.0
+offset_top = 116.0
+offset_right = 99.0
+offset_bottom = 147.0
 text = "Buy"
 
 [node name="PriceLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 47.0
-offset_right = 38.0
-offset_bottom = 70.0
+offset_left = 7.0
+offset_top = 122.0
+offset_right = 47.0
+offset_bottom = 145.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
